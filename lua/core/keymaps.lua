@@ -26,4 +26,3 @@ npairs.setup({
   },
 })
 
-

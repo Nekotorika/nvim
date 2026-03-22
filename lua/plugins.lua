@@ -20,6 +20,8 @@ require("lazy").setup({
     { import = "plugins.lsp" },
     { import = "plugins.snippets" },
     { import = "plugins.ui" },
+    { import = "plugins.telescope"},
+    { import = "plugins.alpha"}
   },
   defaults = { lazy = false, version = false },
   install = { colorscheme = { "tokyonight" } },
