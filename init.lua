@@ -1,4 +1,4 @@
-
+vim.opt.fillchars =  { eob = " " }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
