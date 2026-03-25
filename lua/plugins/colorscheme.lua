@@ -24,7 +24,7 @@ return {
       custom_highlights = {
         LineNr = { fg = "#4b5668" },
         CursorLineNr = { fg = "#c678dd", bold = true },
-        
+
       }
     })
 
