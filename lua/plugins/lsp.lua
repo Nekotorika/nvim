@@ -51,7 +51,7 @@ return {
             require("mason-lspconfig").setup({
                 ensure_installed = { "lua_ls", "clangd", "pyright", "rust_analyzer", "ts_ls" },
                 automatic_installation = true,
-                handlers = {
+                hanglers = {
                     function(server_name)
                         require("lspconfig")[server_name].setup({
                             on_attach = on_attach,
