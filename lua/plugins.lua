@@ -22,7 +22,6 @@ require("lazy").setup({
     { import = "plugins.ui" },
     { import = "plugins.telescope"},
     { import = "plugins.alpha"},
-    { import = "plugins.treesitter"},
   },
   defaults = { lazy = false, version = false },
   install = { colorscheme = { "material" } },
