@@ -24,6 +24,7 @@ require("lazy").setup({
     { import = "plugins.telescope"},
     { import = "plugins.alpha"},
   },
+
   defaults = { lazy = false, version = false },
   install = { colorscheme = { "material" } },
   checker = { enabled = true },
@@ -41,6 +42,10 @@ require("lazy").setup({
       },
     },
   },
+
+  rocks = {
+      enabled = false,
+  }
 })
 
 require("core.options")
