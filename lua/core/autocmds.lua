@@ -51,7 +51,7 @@ vim.keymap.set("n", "<leader>a", function()
 end, { desc = "Switch focus between NvimTree and editor" })
 
 vim.keymap.set("n", "<C-t>", "<cmd>tabnew<CR>", { desc = "New tab" })
-vim.keymap.set("n", "<C-r>", "<cmd>tabclose<CR>", { desc = "Close tab" })
+vim.keymap.set("n", "<C-e>", "<cmd>bd!<CR>", { desc = "Close tab" })
 
-vim.keymap.set("n", "<C-l>", ":tabnext<CR>", { desc = "Next tab" })
-vim.keymap.set("n", "<C-h>", ":tabprevious<CR>", { desc = "Previous tab" })
+vim.keymap.set("n", "<C-l>", "<cmd>bnext<CR>", { desc = "Next tab" })
+vim.keymap.set("n", "<C-h>", "<cmd>bprevious<CR>", { desc = "Previous tab" })

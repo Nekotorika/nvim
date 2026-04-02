@@ -74,6 +74,44 @@ return {
           vim.keymap.set("n", "<CR>", api.node.open.edit, opts("Open"))
         end,
       })
+      local api = require("nvim-tree.api")
+
+      vim.api.nvim_create_autocmd("BufWinEnter", {
+        callback = function()
+          -- alpha.nvimのときは絶対開かない
+          if vim.bo.filetype == "alpha" or vim.fn.argc() == 0 then
+            return
+          end
+
+          -- すでに開いてたら何もしない
+          if api.tree.is_visible() then
+            return
+          end
+
+          -- 特定のバッファは無視
+          local bt = vim.bo.buftype
+          if bt ~= "" then
+            return
+          end
+
+          -- ファイルが存在する時だけ
+          local name = vim.api.nvim_buf_get_name(0)
+          if name == "" then
+            return
+          end
+
+          api.tree.open()
+        end,
+      })
+
+      -- タブ開いたときは強制的に出す（alpha以外）
+      vim.api.nvim_create_autocmd("TabNewEntered", {
+        callback = function()
+          if vim.bo.filetype ~= "alpha" then
+            api.tree.open()
+          end
+        end,
+      })
     end,
   },
 }

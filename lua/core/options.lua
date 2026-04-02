@@ -13,7 +13,6 @@ opt.hlsearch = true
 opt.ignorecase = true
 opt.pumheight = 10
 opt.showmode = false
-opt.showtabline = 2
 opt.smartcase = true
 opt.smartindent = true
 opt.splitbelow = true
@@ -30,13 +29,11 @@ opt.tabstop = 2
 opt.cursorline = true
 opt.laststatus = 3
 opt.number = true
+opt.relativenumber = true
 opt.numberwidth = 4
 opt.ruler = false
 opt.signcolumn = "yes"
 opt.wrap = false
 opt.scrolloff = 8
 opt.sidescrolloff = 8
-opt.guifont =
-    "DotGothic16 Regular Nerd Font:h14," ..
-    "Symbols Nerd Font:h14," ..
-    "Noto Sans Symbols 2:h14"
+opt.guifont = "DotGothic16 Regular Nerd Font:h14," .. "Symbols Nerd Font:h14," .. "Noto Sans Symbols 2:h14"
