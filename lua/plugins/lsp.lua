@@ -50,7 +50,7 @@ return {
       end
 
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "clangd", "pyright", "rust_analyzer", "ts_ls" },
+        ensure_installed = { "lua_ls", "clangd", "pyright", "rust_analyzer", "ts_ls", "csharp_ls" },
         automatic_installation = true,
         hanglers = {
           function(server_name)

@@ -22,6 +22,7 @@ return {
         "toml",
         "c",
         "cpp",
+        "c_sharp",
         "python",
         "rust",
         "go",
