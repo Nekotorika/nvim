@@ -1,6 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
@@ -18,6 +19,13 @@ return {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
+          mapping = cmp.mapping.preset.insert({
+            ["<C-k>"] = cmp.mapping.select_prev_item(),
+            ["<C-j>"] = cmp.mapping.select_next_item(),
+            ["<C-c>"] = cmp.mapping.complete(),
+            ["<C-e>"] = cmp.mapping.abort(),
+            ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          }),
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-n>"] = cmp.mapping.select_next_item(),
