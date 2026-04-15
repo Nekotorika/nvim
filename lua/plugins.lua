@@ -25,6 +25,7 @@ require("lazy").setup({
     { import = "plugins.telescope" },
     { import = "plugins.snacks" },
     { import = "plugins.noice" },
+    { import = "plugins.trouble" },
   },
 
   defaults = { lazy = false, version = false },

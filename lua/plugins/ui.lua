@@ -11,7 +11,6 @@ return {
 
   {
     "nvim-lualine/lualine.nvim",
-    -- mini.icons を使うように変更
     dependencies = { "echasnovski/mini.icons" },
     config = function()
       require("lualine").setup({
@@ -33,7 +32,6 @@ return {
 
   {
     "akinsho/bufferline.nvim",
-    -- ここも mini.icons に変更
     dependencies = { "echasnovski/mini.icons" },
     config = function()
       require("bufferline").setup({
