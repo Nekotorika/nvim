@@ -11,6 +11,7 @@ return {
 
   {
     "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeOpen" },
     dependencies = { "echasnovski/mini.icons" },
     config = function()
       require("nvim-tree").setup({

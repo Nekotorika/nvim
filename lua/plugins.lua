@@ -23,6 +23,7 @@ require("lazy").setup({
     { import = "plugins.snippets" },
     { import = "plugins.ui" },
     { import = "plugins.telescope" },
+    { import = "plugins.toggle" },
     { import = "plugins.snacks" },
     { import = "plugins.noice" },
     { import = "plugins.trouble" },
