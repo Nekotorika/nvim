@@ -32,14 +32,24 @@ return {
       pattern = "lazygit",
       callback = function()
         local opts = { buffer = 0 }
-    
-        vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+        
+        vim.keymap.set("t", "<esc>", function()
+          vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true),
+            "n",
+            false
+          )
+        
+          vim.schedule(function()
+            if vim.bo.filetype == "lazygit" then
+              vim.cmd("normal! gg0")
+            end
+          end)
+        end, { buffer = 0 })
     
         vim.keymap.set("n", "q", function()
-          -- 一回normalに戻す
           vim.cmd("stopinsert")
     
-          -- そのあと閉じる
           vim.schedule(function()
             vim.cmd("close")
           end)

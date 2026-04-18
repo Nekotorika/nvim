@@ -1,47 +1,61 @@
 return {
-  "kdheepak/lazygit.nvim",
-  cmd = "LazyGit",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
+  "akinsho/toggleterm.nvim",
+  version = "*",
+  event = "VeryLazy",
   config = function()
-    local function get_lazygit_win()
-      for _, win in ipairs(vim.api.nvim_list_wins()) do
-        local buf = vim.api.nvim_win_get_buf(win)
+    local toggleterm = require("toggleterm")
+    local Terminal = require("toggleterm.terminal").Terminal
 
-        if vim.bo[buf].filetype == "lazygit" then
-          return win
-        end
-      end
-      return nil
-    end
+    toggleterm.setup({
+      direction = "float",
+      start_in_insert = true,
+    })
 
-    vim.keymap.set("n", "<leader>gg", function()
-      local win = get_lazygit_win()
+    toggleterm.setup({
+      direction = "float",
+      start_in_insert = true,
+      float_opts = {
+        border = "rounded",
+        width = math.floor(vim.o.columns * 0.9),
+        height = math.floor(vim.o.lines * 0.9),
+      },
+    })
 
-      if win then
-        vim.api.nvim_win_close(win, true)
-      else
-        vim.cmd("LazyGit")
-      end
-    end, { desc = "LazyGit Toggle" })
-
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = "lazygit",
-      callback = function()
-        local opts = { buffer = 0 }
-
-        vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-        vim.keymap.set("t", "<leader>gg", "<cmd>close<cr>", opts)
+    local lazygit = Terminal:new({
+      cmd = "lazygit",
+      direction = "float",
+      close_on_exit = true,
+      float_opts = {
+        border = "rounded",
+        width = math.floor(vim.o.columns * 0.9),
+        height = math.floor(vim.o.lines * 0.9),
+        row = math.floor((vim.o.lines - vim.o.lines * 0.9) / 2),
+        col = math.floor((vim.o.columns - vim.o.columns * 0.9) / 2),
+      },
+      on_open = function(term)
+        vim.cmd("startinsert")
+        vim.defer_fn(function()
+          vim.api.nvim_chan_send(term.job_id, "r")
+        end, 50)
       end,
     })
 
-    vim.api.nvim_create_autocmd("BufWinLeave", {
-      pattern = "*lazygit*",
+    vim.keymap.set("n", "<leader>oo", "<cmd>ToggleTerm<cr>", { desc = "Terminal" })
+
+    vim.keymap.set("n", "<leader>gg", function()
+      lazygit:toggle()
+    end, { desc = "LazyGit" })
+
+    vim.api.nvim_create_autocmd("TermOpen", {
+      pattern = "term://*",
       callback = function()
-        vim.schedule(function()
-          vim.cmd("normal! L")
-        end)
+        local opts = { buffer = 0 }
+
+        
+        vim.keymap.set("t", "<leader>oo", [[<C-\><C-n><cmd>ToggleTerm<cr>]], opts)
+        vim.keymap.set("t", "<leader>gg", function()
+          lazygit:toggle()
+        end, opts)
       end,
     })
   end,
