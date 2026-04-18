@@ -19,6 +19,7 @@ return {
     },
     config = function()
       require("neo-tree").setup({
+        winbar = false,
         window = {
           position = "left",
           width = 30,
@@ -27,24 +28,24 @@ return {
 
         filesystem = {
           filtered_items = {
-            visible = false, -- dotfilesを表示するかどうか
+            visible = true,
             hide_dotfiles = true,
             hide_gitignored = false,
           },
           follow_current_file = {
-            enabled = true, -- 現在のファイルをツリーで追従
+            enabled = true,
           },
-          group_empty_dirs = true, -- 空のディレクトリをまとめる
+          group_empty_dirs = true,
         },
 
-        -- アイコンやレンダリングの設定
         default_component_configs = {
           indent = {
-            with_expanders = true, -- フォルダの開閉ガイドを表示
+            with_expanders = true,
             expander_collapsed = "",
             expander_expanded = "",
           },
           icon = {
+            use_filtered_colors = false,
             folder_closed = "",
             folder_open = "",
             folder_empty = "󰜌",
@@ -86,6 +87,17 @@ return {
           end
         end
       end, { desc = "Switch focus between Neo-tree and editor" })
+      vim.api.nvim_set_hl(0, "NeoTreeDotfile", {
+        fg = "#888888",
+      })
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = function()
+          vim.api.nvim_set_hl(0, "NeoTreeDotfile", {
+            fg = "#888888",
+          })
+        end,
+      })
     end,
   },
 }

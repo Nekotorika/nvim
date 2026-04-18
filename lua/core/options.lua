@@ -36,4 +36,3 @@ opt.signcolumn = "yes"
 opt.wrap = false
 opt.scrolloff = 8
 opt.sidescrolloff = 8
-opt.guifont = "DotGothic16 Regular Nerd Font:h14," .. "Symbols Nerd Font:h14," .. "Noto Sans Symbols 2:h14"

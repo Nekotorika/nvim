@@ -28,6 +28,7 @@ require("lazy").setup({
     { import = "plugins.noice" },
     { import = "plugins.trouble" },
     { import = "plugins.lazygit" },
+    { import = "plugins.breadcrumbs" },
   },
 
   defaults = { lazy = false, version = false },
