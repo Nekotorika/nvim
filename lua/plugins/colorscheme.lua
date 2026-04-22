@@ -31,18 +31,37 @@ return {
         return {
           Normal = { bg = colors.base },
           NormalNC = { bg = colors.base },
-          NormalFloat = { bg = colors.base },
+          NormalFloat = { bg = colors.mantle },
+
           LineNr = { fg = "#5a657a", bg = colors.base },
-          CursorLineNr = { fg = colors.mauve, bold = true, bg = colors.base },
+          CursorLineNr = { fg = colors.lavender, bold = true, bg = colors.base },
+
           SignColumn = { bg = colors.base },
           FoldColumn = { bg = colors.base },
-          CursorLine = { bg = colors.surface0 },
-          Visual = { bg = "#2a2a3a" },
-          Search = { bg = "#3a3a4a", fg = colors.text },
-          FloatBorder = { bg = colors.base },
-          Pmenu = { bg = colors.base },
+          CursorLine = { bg = "#1a1b26" },
+          Visual = { bg = "#2f334d" },
+          Search = { bg = "#3b4261", fg = colors.text },
+
+          FloatBorder = { bg = colors.mantle, fg = colors.surface2 },
+          Pmenu = { bg = colors.mantle },
+
+          TelescopeNormal = { bg = colors.mantle },
+          TelescopeBorder = { fg = colors.surface2, bg = colors.mantle },
+
           ["@variable"] = { fg = colors.text },
           ["@parameter"] = { fg = colors.text },
+
+          ["@function"] = { fg = colors.blue },
+          ["@function.call"] = { fg = colors.blue },
+
+          ["@keyword"] = { fg = colors.mauve, italic = true },
+
+          ["@string"] = { fg = colors.green },
+          ["@type"] = { fg = colors.yellow },
+
+          ["@constant"] = { fg = colors.peach },
+
+          ["@operator"] = { fg = colors.sky },
         }
       end,
     })

@@ -73,24 +73,28 @@ return {
       })
 
       vim.keymap.set("n", "<leader>a", function()
-        if vim.bo.filetype == "neo-tree" then
-          vim.cmd("wincmd p")
+        local current_win = vim.api.nvim_get_current_win()
+        local current_buf = vim.api.nvim_win_get_buf(current_win)
+
+        if vim.bo[current_buf].filetype == "neo-tree" then
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            if vim.bo[buf].filetype ~= "neo-tree" then
+              vim.api.nvim_set_current_win(win)
+              return
+            end
+          end
         else
-          local neotree_win = nil
           for _, win in ipairs(vim.api.nvim_list_wins()) do
             local buf = vim.api.nvim_win_get_buf(win)
             if vim.bo[buf].filetype == "neo-tree" then
-              neotree_win = win
-              break
+              vim.api.nvim_set_current_win(win)
+              return
             end
           end
-          if neotree_win then
-            vim.api.nvim_set_current_win(neotree_win)
-          else
-            vim.cmd("Neotree focus")
-          end
         end
-      end, { desc = "Switch focus between Neo-tree and editor" })
+      end, { desc = "Switch focus Neotree <-> else (Open if not exists)" })
+
       vim.api.nvim_set_hl(0, "NeoTreeDotfile", {
         fg = "#888888",
       })
