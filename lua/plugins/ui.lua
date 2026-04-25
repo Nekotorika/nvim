@@ -63,7 +63,7 @@ return {
           offsets = {
             {
               filetype = "neo-tree",
-              text = "EXPLORER",
+              text = "Explore",
               separator = true,
             },
           },
