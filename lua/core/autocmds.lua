@@ -11,14 +11,20 @@ autocmd("FileType", {
 
 autocmd("BufNewFile", {
   callback = function()
+    local path = vim.fn.expand("%:p") -- フルパスを取得
     local basename = vim.fn.expand("%:t")
-    if basename ~= "" and vim.fn.filereadable(basename) == 1 then
+
+    if vim.fn.isdirectory(path) == 1 then
+      return
+    end
+
+    if basename ~= "" and vim.fn.filereadable(path) == 1 then
       local counter = 1
       local newname
       repeat
         newname = string.format("%s_%d", basename, counter)
         counter = counter + 1
-      until vim.fn.filereadable(newname) == 0
+      until vim.fn.filereadable(vim.fn.expand("%:p:h") .. "/" .. newname) == 0
       vim.cmd("file " .. newname)
     end
   end,

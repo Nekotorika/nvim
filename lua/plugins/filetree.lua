@@ -2,17 +2,27 @@ return {
   {
     "echasnovski/mini.icons",
     opts = {},
-    config = function(_, opts)
+    config = function()
       local icons = require("mini.icons")
-      icons.setup(opts)
+      icons.setup({
+        file = {
+          ["README.md"] = { glyph = "󰋼", hl = "MiniIconsBlue" },
+          ["README.txt"] = { glyph = "󰋼", hl = "MiniIconsBlue" },
+          ["README"] = { glyph = "󰋼", hl = "MiniIconsBlue" },
+          ["readme.md"] = { glyph = "󰋼", hl = "MiniIconsBlue" },
+          ["readme.txt"] = { glyph = "󰋼", hl = "MiniIconsBlue" },
+        },
+      })
       icons.mock_nvim_web_devicons()
     end,
   },
 
   {
     "nvim-neo-tree/neo-tree.nvim",
+    event = "VeryLazy",
     cmd = "Neotree",
     branch = "v3.x",
+    lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "echasnovski/mini.icons",
@@ -30,6 +40,7 @@ return {
         },
 
         filesystem = {
+          hijack_netrw_behavior = "open_default", -- ★これが重要
           filtered_items = {
             visible = true,
             hide_dotfiles = true,
@@ -53,7 +64,7 @@ return {
             folder_closed = "",
             folder_open = "",
             folder_empty = "󰜌",
-            default = "*",
+            default = "󰈔", -- ★ここ変える
             highlight = "NeoTreeFileIcon",
           },
           git_status = {
